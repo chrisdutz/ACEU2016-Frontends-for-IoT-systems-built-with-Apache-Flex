@@ -11,3 +11,8 @@ Convert the AsciiDoc to HTML slides by invoking the `process-resources` goal (co
  $ mvn
 
 Open the file _target/generated-slides/slides.html_ in your browser to see the generated HTML file containing the reveal.js presentation deck.
+
+== Remarks
+
+The template is adjusted to use the codecentric font Panton, so be sure to have that installed on your presentation machine.
+Any css adjustments can go to "src/main/theme/cc.css" as this is automatically embedded into the themes directory.
