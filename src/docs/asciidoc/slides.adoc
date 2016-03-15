@@ -72,3 +72,52 @@ imagesdir:: {imagesdir}
 .Custom
 project-version:: {project-version}
 sourcedir:: {sourcedir}
+
+== Diagrams
+
+Press the down arrow key to see the different types of diagrams
+
+=== Ditaa Diagram
+
+[ditaa,asciidoctor-diagram-process]
+....
+                   +-------------+
+                   | Asciidoctor |-------+
+                   |   diagram   |       |
+                   +-------------+       | PNG out
+                       ^                 |
+                       | ditaa in        |
+                       |                 v
+ +--------+   +--------+----+    /---------------\
+ |        |---+ Asciidoctor +--->|               |
+ |  Text  |   +-------------+    |   Beautiful   |
+ |Document|   |   !magic!   |    |    Output     |
+ |     {d}|   |             |    |               |
+ +---+----+   +-------------+    \---------------/
+     :                                   ^
+     |          Lots of work             |
+     +-----------------------------------+
+....
+
+=== PlantUML Diagram
+
+[plantuml,auth-protocol]
+....
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+....
+
+=== GraphVIZ Diagram
+
+[graphviz, dot-example, svg]
+----
+digraph g {
+    a -> b
+    b -> c
+    c -> d
+    d -> a
+}
+----
