@@ -23,18 +23,6 @@ You've unlocked the super secret notes area.
 Neat huh?
 --
 
-== Source Code
-
-[source,java]
-.Java code from project
-----
-include::{sourcedir}/example/StringUtils.java[tags=contains,indent=0]
-----
-
-This page was built by the following command:
-
- $ mvn
-
 == Blank screen
 
 You can press `*b*` or `*.*` to blank your current screen.
@@ -44,17 +32,6 @@ Hit it again to bring it back.
 == Overview
 
 Press the `*esc*` key to get an overview of your slides.
-
-== Including documents from subdir
-
-.include::subdir/_b.adoc[]
-
-include::subdir/_b.adoc[]
-
-== Images
-
-[.thumb]
-image::logo-and-name-white.png[scaledwidth=75%]
 
 == Attributes
 
@@ -72,6 +49,69 @@ imagesdir:: {imagesdir}
 .Custom
 project-version:: {project-version}
 sourcedir:: {sourcedir}
+
+== Including documents from subdir
+
+.include::subdir/_b.adoc[]
+
+include::subdir/_b.adoc[]
+
+== Images
+
+[.thumb]
+image::logo-and-name-white.png[scaledwidth=75%]
+
+== Videos
+
+Play videos from Youtube, or locally
+
+video::BKorP55Aqvg[youtube, width=640, height=480]
+
+== Lists
+
+Asciidoctor allows a wide variety of list option.
+
+For details see the documentation starting at: http://asciidoctor.org/docs/user-manual/#unordered-lists
+
+Press the down arrow key to see the some examples.
+
+=== Unordered List
+
+* Protons
+* Electrons
+* Neutrons
+
+=== Ordered List
+
+. Protons
+. Electrons
+. Neutrons
+
+=== Nested List
+
+Nest lists, by duplicating the list-char
+
+* Protons
+** Electrons
+* Neutrons
+
+== Tables
+
+[cols="2*", options="header"]
+|===
+| Header A | Header B
+| Cell A1 | Cell B1
+| Cell A2 | Cell B2
+| Cell A3 | Cell B3
+|===
+
+== Source Code
+
+[source,java]
+.Java code from project
+----
+include::{sourcedir}/example/StringUtils.java[tags=contains,indent=0]
+----
 
 == Diagrams
 
