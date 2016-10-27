@@ -9,4 +9,6 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+.asciidoctor
+asciidoctor-*
 # Created by .ignore support plugin (hsz.mobi)
