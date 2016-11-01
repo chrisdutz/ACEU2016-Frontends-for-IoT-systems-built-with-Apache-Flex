@@ -1,163 +1,235 @@
-= Example Manual
-Doc Writer <doc.writer@example.org>
-2014-09-09
-:revnumber: {project-version}
-:example-caption!:
+// Don't center the slides vertically
+:revealjs_center: false
+// Display the current slide number in the bottom right
+:revealjs_slidenumber: true
+// The slide-id is added to the browser-url allowing to reload to the same page
+:revealjs_history: true
+
+== !
+
 ifndef::imagesdir[:imagesdir: images]
 ifndef::sourcedir[:sourcedir: ../../main/java]
+ifndef::javasourcedir[:javasourcedir: ../../main/java]
+ifndef::flexsourcedir[:flexsourcedir: ../../main/flex]
 
-== Introduction
+IoT Frontends with Apache Flex
 
-[%step]
-* This is a user manual for an example project.
-* This project does something.
-* We just haven't decided what that is yet.
+image::flex-logo.png[]
 
-== Speaker Notes
+Christofer Dutz <christofer.dutz@codecentric.de>
 
-Press the `*s*` key to access speaker notes.
+ApacheCon EU 2016 - Seville 2016-11-16
+
+== About Me
+
+image::christofer-dutz.png[float=right]
+
+* Christofer Dutz
+* Senior IT Consultant
+* codecentric AG
+* Apache Member
+* Apache Flex Committer & PMC
+* Flexmojos Lead Developer
+* Open-Source enthusiast
+
+== Agenda
+
+image::rapiro.png[float=right]
+
+* What do we need?
+* What parts of Apache Flex can help?
+* Why is Flex so great for IoT?
+* Demo
+
+== What do we need?
+
+* Server application a client can talk to
+* Client that talks to the server
+* Logic on the server that talks to the IoT hard/software
+
+== What parts of Apache Flex can help?
+
+* BlazeDS as communication endpoint to any client
+* Flex client as frontend
 
 [NOTE.speaker]
 --
-You've unlocked the super secret notes area.
-Neat huh?
+Actually the IoC Code is the only part that we have to implement
+But we're thinking of a BlazeDS MQTT Messaging Adapter to link Flex Messaging and MQTT together
 --
 
-== Blank screen
+== Why is Flex so great for IoT?
 
-You can press `*b*` or `*.*` to blank your current screen.
+=== On the Server
 
-Hit it again to bring it back.
+image::spring-boot-logo.png[float=right]
 
-== Overview
+* BlazeDS-Spring-Boot-Starter
+** Automatically configures the BlazeDS server
+** Using Spring-Flex for configuring the details
+** Activated by providing a "META-INF/flex/services-config.xml"
 
-Press the `*esc*` key to get an overview of your slides.
+=== On the Server
 
-== Attributes
+image::blazeds-logo.jpg[float=right]
 
-Press the down arrow key to see the next sub-slide.
+* BlazeDS
+** Server-Push
+** Remoting (call method on server)
+** Messaging (JMS-Like publish-subscribe)
+*** JMS integration possible
+** Automatic serialization/deserialization
+** Strongly typed
 
-=== Attributes Part 1
-.Built-in
-asciidoctor-version:: {asciidoctor-version}
-safe-mode-name:: {safe-mode-name}
-docdir:: {docdir}
-docfile:: {docfile}
-imagesdir:: {imagesdir}
+[NOTE.speaker]
+--
+* Server-Push with graceful downgrade to long-polling and normal (short) polling
+* Full JMS integration easily configurable
+--
 
-=== Attributes Part 2
-.Custom
-project-version:: {project-version}
-sourcedir:: {sourcedir}
+=== On the Server
 
-== Including documents from subdir
+* Spring-Flex
+** Make Spring bean accessible by annotating with @RemotingDestination
+** Takes care of configuring BlazeDS for Spring
+** Integrates BlazeDS into Spring
+*** Spring Messaging
+*** Spring Security
+*** ...
 
-.include::subdir/_b.adoc[]
+[NOTE.speaker]
+--
+* Spring-Messaging or default ActionScript Messaging
+--
 
-include::subdir/_b.adoc[]
+=== On the client
 
-== Images
+* Strongly typed model
+* Client-Side model auto-generated from server model
+* Framework handles the communication details automatically
+* Deployable as native application on Android and IOs devices
+* Skinning
 
-[.thumb]
-image::logo-and-name-white.png[scaledwidth=75%]
+[NOTE.speaker]
+--
+* As the client model is generated from the server model they are always in sync
+* Also deployable on Windows, Mac, Linux as native applications or on any platform with Adobe Air runtime
+* Also runable on Browsers, if Flash is enabled.
+--
 
-== Videos
+== Client-Server Communication Example
 
-Play videos from Youtube, or locally
-
-video::BKorP55Aqvg[youtube, width=640, height=480]
-
-== Lists
-
-Asciidoctor allows a wide variety of list option.
-
-For details see the documentation starting at: http://asciidoctor.org/docs/user-manual/#unordered-lists
-
-Press the down arrow key to see the some examples.
-
-=== Unordered List
-
-* Protons
-* Electrons
-* Neutrons
-
-=== Ordered List
-
-. Protons
-. Electrons
-. Neutrons
-
-=== Nested List
-
-Nest lists, by duplicating the list-char
-
-* Protons
-** Electrons
-* Neutrons
-
-== Tables
-
-[cols="2*", options="header"]
-|===
-| Header A | Header B
-| Cell A1 | Cell B1
-| Cell A2 | Cell B2
-| Cell A3 | Cell B3
-|===
-
-== Source Code
+=== On the Server
 
 [source,java]
-.Java code from project
 ----
-include::{sourcedir}/example/StringUtils.java[tags=contains,indent=0]
+include::{javasourcedir}/de/codecentric/iot/rapiro/movement/MovementService.java[]
 ----
 
-== Diagrams
+[NOTE.speaker]
+--
+* Scroll down the code to see the rest.
+--
 
-Press the down arrow key to see the different types of diagrams
+=== On the client
 
-=== Ditaa Diagram
+* Declaration of the remote service incl. methods and callbacks
 
-[ditaa,asciidoctor-diagram-process]
-....
-                   +-------------+
-                   | Asciidoctor |-------+
-                   |   diagram   |       |
-                   +-------------+       | PNG out
-                       ^                 |
-                       | ditaa in        |
-                       |                 v
- +--------+   +--------+----+    /---------------\
- |        |---+ Asciidoctor +--->|               |
- |  Text  |   +-------------+    |   Beautiful   |
- |Document|   |   !magic!   |    |    Output     |
- |     {d}|   |             |    |               |
- +---+----+   +-------------+    \---------------/
-     :                                   ^
-     |          Lots of work             |
-     +-----------------------------------+
-....
-
-=== PlantUML Diagram
-
-[plantuml,auth-protocol]
-....
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
-....
-
-=== GraphVIZ Diagram
-
-[graphviz, dot-example, svg]
+[source,java]
 ----
-digraph g {
-    a -> b
-    b -> c
-    c -> d
-    d -> a
-}
+include::{flexsourcedir}/de/codecentric/iot/rapiro/Application.mxml[lines=7..13]
 ----
+
+=== On the client
+
+* Calling the remote methods
+[source,java]
+----
+include::{flexsourcedir}/de/codecentric/iot/rapiro/Application.mxml[lines=62]
+----
+[source,java]
+----
+include::{flexsourcedir}/de/codecentric/iot/rapiro/Application.mxml[lines=52..54]
+----
+[source,java]
+----
+include::{flexsourcedir}/de/codecentric/iot/rapiro/Application.mxml[lines=32..34]
+----
+[source,java]
+----
+include::{flexsourcedir}/de/codecentric/iot/rapiro/Application.mxml[lines=40..42]
+----
+
+=== Behind the scenes
+
+plantuml::diagrams/behind-the-scenes.puml[]
+[plantuml,interaction]
+
+== Skinning Example
+
+* Component + Skin
+* Component = functional implementation of control
+* Skin = visual representation (incl. UI logic)
+* Not only for positioning as with CSS in JS/HTML
+* Different usability on touch and desktop
+
+[NOTE.speaker]
+--
+* Skin usually contains the logic for all UI-related operations
+* Component relieved of any non-functional logic
+* Big form on desktop, wizard on mobile
+--
+
+// TODO: Implement this ...
+
+== Demo of the Robot
+
+=== Hardware Details
+
+* Arduino Uno handling the Movement
+* Pixy (CMUcam5) handling processing of the image data
+* IR Distance sensor
+* Raspberry PI 3 communicating with all of the sub-systems
+** 64 bit Quad Core ARM Cortex-A53
+** WiFi access point, 32GB SD flash memory, 1GB Ram
+* PAM8403 based audio amplifier
+
+=== Software Details
+
+// TODO: Check the details ...
+* OS: Raspbian
+* OpenJDK 1.8
+* Jetty-based Spring-Boot application
+* BlazeDS
+* Akka
+* Sources available on Github at: https://github.com/chrisdutz/RAPIRO
+
+== Impressions
+
+=== Arduino
+
+image::20160102_210441.jpg[]
+
+=== CAD Designing the cam carrier
+
+image::20160102_142756_001.jpg[]
+
+=== Printing the cam carrier
+
+image::20160102_151708.jpg[]
+
+=== Mounted cam
+
+image::20160102_174235.jpg[]
+
+=== Pixy in action
+
+image::20160114_135224.jpg[]
+
+=== Finished parts
+
+image::part-2-finished-rapiro.jpg[]
+
+=== The End
+
+image::20160114_134133.jpg[]
