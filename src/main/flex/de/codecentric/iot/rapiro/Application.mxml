@@ -59,7 +59,8 @@
     <s:VGroup width="100%" height="100%" horizontalAlign="center" padding="40">
         <s:VGroup width="100%" height="100%" horizontalAlign="center" padding="20">
             <s:Button click="onForwardClick(event)" label="Forward" enabled="{enabled}"/>
-            <s:Button click="onStopClick(event)" label="Stop" enabled="{enabled}"/>
+            <s:Button click="onStopClick(event)" label="Stop"
+                      enabled="{enabled}"/>
         </s:VGroup>
    </s:VGroup>
 

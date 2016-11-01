@@ -145,7 +145,7 @@ include::{flexsourcedir}/de/codecentric/iot/rapiro/Application.mxml[lines=7..13]
 * Calling the remote methods
 [source,java]
 ----
-include::{flexsourcedir}/de/codecentric/iot/rapiro/Application.mxml[lines=62]
+include::{flexsourcedir}/de/codecentric/iot/rapiro/Application.mxml[lines=62..63]
 ----
 [source,java]
 ----
@@ -196,40 +196,48 @@ plantuml::diagrams/behind-the-scenes.puml[]
 
 === Software Details
 
-// TODO: Check the details ...
 * OS: Raspbian
-* OpenJDK 1.8
+* Oracle Java 1.8 JDK
+* Scala 2.11.8
 * Jetty-based Spring-Boot application
-* BlazeDS
-* Akka
+** Spring 4.3.2.RELEASE
+** Spring-Boot 1.4.1.RELEASE
+** Spring-Flex 1.5.2.RELEASE
+** Spring-Scala 1.0.0.M2
+
+=== Software Details (Continued)
+
+* PI4J 1.1 (lib for accessing RP devices)
+* BlazeDS 4.7.3-SNAPSHOT (for client communication)
+* Akka 2.4.11 (for higher "brain" functions)
 * Sources available on Github at: https://github.com/chrisdutz/RAPIRO
 
 == Impressions
 
 === Arduino
 
-image::20160102_210441.jpg[]
+image::impression-arduino.png[]
 
 === CAD Designing the cam carrier
 
-image::20160102_142756_001.jpg[]
+image::impression-cad.png[]
 
 === Printing the cam carrier
 
-image::20160102_151708.jpg[]
+image::impression-printing.png[]
 
 === Mounted cam
 
-image::20160102_174235.jpg[]
+image::impression-mounted-cam.png[]
 
 === Pixy in action
 
-image::20160114_135224.jpg[]
+image::impression-pixy-in-action.jpg[]
 
 === Finished parts
 
-image::part-2-finished-rapiro.jpg[]
+image::impression-finished-rapiro.png[]
 
 === The End
 
-image::20160114_134133.jpg[]
+image::impression-the-end.png[]
